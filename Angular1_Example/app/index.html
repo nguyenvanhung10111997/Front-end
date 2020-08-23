@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css" />
+    <link rel="stylesheet" href="assets/css/customer.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
+    <script src="assets/js/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="services/customerService.js"></script>
+    <script src="controllers/customerController.js"></script>
+</head>
+
+<body>
+
+    <div ng-app="myApp" ng-controller="customerController" class="container">
+        <div class="header">
+            <h3>Customer</h3>
+        </div>
+        <div class="body">
+            <button type="button" class="btn btn-primary" ng-click="openCustomerModal()">Add</button>
+            <div class="list-customer">
+                <table class="table table-bordered" id="customerTable">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Birthday</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="customer in customers">
+                            <td>{{customer.id}}</td>
+                            <td>{{customer.name}}</td>
+                            <td>{{customer.birthDay}}</td>
+                            <td>{{customer.phone}}</td>
+                            <td>{{customer.address}}</td>
+                            <td>
+                                <span><i class="fa fa-pencil-square-o btn-icon" aria-hidden="true" ng-click="openCustomerModal(customer.id)"></i></span>
+                                <span><i class="fa fa-trash-o btn-icon" aria-hidden="true" ng-click="deleteCustomer(customer.id)"></i></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">ADD NEW CUSTOMER</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form ng-submit="submit(customer)">
+                                <input type="hidden" ng-model="customer.id" />
+                                <div class="form-group">
+                                    <label>Name:</label>
+                                    <input type="text" class="form-control" ng-model="customer.name" placeholder="Enter name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Birthday:</label>
+                                    <input type="text" class="form-control" ng-model="customer.birthDay" placeholder="Enter birthday">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone:</label>
+                                    <input type="text" class="form-control" ng-model="customer.phone" placeholder="Enter phone">
+                                </div>
+                                <div class="form-group">
+                                    <label>Address:</label>
+                                    <input type="text" class="form-control" ng-model="customer.address" placeholder="Enter address">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary btn-footer-modal">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

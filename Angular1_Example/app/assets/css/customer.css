@@ -1,0 +1,20 @@
+body {
+    margin: 10%;
+}
+
+.header {
+    text-align: center;
+}
+
+.list-customer {
+    margin-top: 20px;
+}
+
+.btn-footer-modal {
+    margin-right: -10px !important;
+}
+
+.btn-icon {
+    cursor: pointer;
+    font-size: 20px;
+}
